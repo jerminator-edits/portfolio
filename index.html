@@ -2,24 +2,1608 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerminator Edits</title>
-<link rel="stylesheet" href="i12snfg4nuxh1nd1nxungx32hrnhds.css">
-        <style>
+    <title>GEN-T</title>
+<link rel="icon" type="image/x-icon" href="fav.png">
+    <style>
+        :root {
+            --primary-green: #76b900;
+            --dark-bg: #1a1a1a;
+            --light-green: rgba(118, 185, 0, 0.1);
+            --darker-gray: #2a2a2a;
+            --message-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(118, 185, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            background-color: black;
-            color: black;
+            background: var(--dark-bg);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
         }
 
-        div.redirect {
-            background-color: black;
+        .sidebar {
+            width: 260px;
+            background: var(--darker-gray);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: calc(100vh - 20px);
         }
+
+        .model-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .model-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .model-button:hover {
+            background: var(--light-green);
+        }
+
+        .model-button.selected-model {
+            background: var(--light-green);
+            border: 1px solid var(--primary-green);
+        }
+
+.extra-options-section {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    display: flex;          /* Add this */
+    flex-direction: column; /* Add this */
+    gap: 8px;              /* Add this */
+}
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .logo-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .profile-section {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .advanced-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .profile-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .advanced-button:hover,
+        .profile-button:hover {
+            background: var(--light-green);
+        }
+
+        .tabs-section {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-green) var(--darker-gray);
+            padding-bottom: 10px;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tabs-container::-webkit-scrollbar-track {
+            background: var(--darker-gray);
+            border-radius: 3px;
+        }
+
+        .tabs-container::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 3px;
+        }
+
+        .new-chat-button {
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .new-chat-button:hover {
+            background: #8dd300;
+        }
+
+        .tab {
+            background: var(--darker-gray);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .tab.active {
+            background: var(--primary-green);
+        }
+
+        .tab .close-btn {
+            opacity: 0.6;
+            font-size: 14px;
+            margin-left: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab:hover .close-btn {
+            opacity: 1;
+        }
+
+        .chat-window {
+            flex: 1;
+            background: var(--message-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-color);
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-green) var(--darker-gray);
+        }
+
+        .chat-window::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-window::-webkit-scrollbar-track {
+            background: var(--darker-gray);
+            border-radius: 4px;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb:hover {
+            background: #8dd300;
+        }
+
+        .input-container {
+            padding: 10px;
+            background: var(--dark-bg);
+            position: sticky;
+            bottom: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: var(--message-bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .send-button {
+            background: var(--primary-green);
+            border: none;
+            width: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .send-button:hover {
+            background: #8dd300;
+        }
+
+        .message-container {
+            width: 100%;
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .user-message-container {
+            justify-content: flex-end;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .user-message {
+            background: var(--light-green);
+        }
+
+        .ai-message {
+            background: var(--message-bg);
+        }
+
+        .coding-window {
+            background: #333;
+            padding: 20px;
+            border-radius: 15px;
+            color: #fafafa;
+            font-family: monospace;
+            overflow-x: auto;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .styled {
+            color: darkgrey;
+            font-style: italic;
+        }
+
+
+.action-buttons-container {
+    display: flex;
+    gap: 12px;
+    padding: 0 10px 10px 10px;
+}
+
+.action-button {
+    background: var(--darker-gray);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-button:hover {
+    background: var(--light-green);
+    border-color: var(--primary-green);
+}
+
+.action-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+/* Add these CSS rules to your existing styles */
+.action-button:disabled {
+    background: #444444;
+    border-color: #555555;
+    color: #888888;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.action-button.enabled {
+    background: var(--darker-gray);
+    cursor: pointer;
+}
+
+
+/* Modal styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    overflow: hidden; /* Prevent scroll on the overlay */
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--darker-gray);
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 85vh;
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 1px var(--primary-green),
+                0 0 0 3px rgba(118, 185, 0, 0.2),
+                0 8px 30px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    margin-top: 50px;
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--primary-green);
+    background: linear-gradient(
+        to bottom,
+        var(--darker-gray),
+        rgba(42, 42, 42, 0.95)
+    );
+    overflow: auto; /* Ensure the content is scrollable */
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 1px solid var(--primary-green);
+    background: #000;
+    color: var(--primary-green);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 1002;
+    box-shadow: 0 0 10px rgba(118, 185, 0, 0.2);
+}
+
+.modal-close:hover {
+    background-color: var(--primary-green);
+    color: var(--darker-gray);
+    transform: rotate(90deg);
+}
+
+.preview-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    flex: 1;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation classes */
+.modal-overlay[style*="display: block"] .modal-content {
+    animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     </style>
-
 </head>
 <body>
-    <div class="redirect"></div>
-    <script src="jd02j2undiuhqn21nciceadn3ib2ic3h8h2cnu7yb277h2fh82dh3c8u38d28nhdwid732yd928d8273dbt37dy8d88xwd73yd.js"> </script>
+    <div class="sidebar">
+        <div class="model-section">
+            <button class="model-button selected-model">GEN-T <span style="font-weight:bold;">V2</span></button>
+            <button class="model-button">GEN-T A71</button>
+            <button class="model-button">nice-chatbot-2.2</button>
+            <button class="model-button">GPT-A</button>
+        </div>
+        <div class="extra-options-section">
+            <button class="model-button">Preview Models</button>
+            <button class="model-button">Training Stats (<span style="font-weight:bold;">ADMIN</span>)</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="logo-text">GEN-T</div>
+            <div class="profile-section">
+                <button class="advanced-button">Advanced</button>
+                <button class="profile-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M20 21a8 8 0 0 0-16 0"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="tabs-section">
+            <div class="tabs-container">
+                <button class="new-chat-button">+</button>
+                <button class="tab active">New Chat<span class="close-btn">x</span></button>
+                <button class="tab">Transit Methods and..<span class="close-btn">x</span></button>
+                <button class="tab">Chimera Equilibrium Hom..<span class="close-btn">x</span></button>
+                <button class="tab">Gradient Calculation thr..<span class="close-btn">x</span></button>
+            </div>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+            <div class="message-container">
+                <div class="ai-message message">How can I assist you today?</div>
+            </div>
+    </div>
+
+<div class="action-buttons-container">
+    <button class="action-button" id="retryButton" disabled>
+        <span style="font-size: 18px;">↻</span>
+        Retry
+    </button>
+    <button class="action-button" id="previewButton" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+        </svg>
+        Preview
+    </button>
+</div>
+
+        <div class="input-container">
+            <input type="text" class="chat-input" placeholder="Enter your message..." id="userInput">
+            <button class="send-button" id="sendButton">⠒</button>
+        </div>
+</div>
+
+
+
+<script>
+
+        const chatWindow = document.getElementById('chatWindow');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const tabs = document.querySelectorAll('.tab');
+        const newChatButton = document.querySelector('.new-chat-button');
+
+        let chatCount = tabs.length;
+        let messageCount = 0;
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        newChatButton.addEventListener('click', () => {
+            chatCount++;
+            const newTab = document.createElement('button');
+            newTab.className = 'tab';
+            newTab.innerHTML = `New Chat <span class="close-btn">x</span>`;
+
+            newTab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                newTab.classList.add('active');
+            });
+
+            document.querySelector('.tabs-container').appendChild(newTab);
+        });
+
+        function addMessage(text, isUser, delay = 1000) {
+            return new Promise((resolve) => {
+                const messageContainer = document.createElement('div');
+                messageContainer.className = `message-container ${isUser ? 'user-message-container' : ''}`;
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+                messageDiv.textContent = '';
+
+                messageContainer.appendChild(messageDiv);
+                chatWindow.appendChild(messageContainer);
+
+                // Simulate typing effect
+                let i = 0;
+                const intervalId = setInterval(() => {
+                    if (i < text.length) {
+                        messageDiv.textContent += text.charAt(i);
+                        i++;
+                        chatWindow.scrollTo({
+                            top: chatWindow.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        clearInterval(intervalId);
+                        resolve();
+                    }
+                }, 50);
+
+                setTimeout(() => {
+                    chatWindow.scrollTo({
+                        top: chatWindow.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, delay);
+            });
+        }
+
+        function addCodingWindow() {
+            const codingWindow = document.createElement('div');
+            codingWindow.className = 'coding-window';
+            codingWindow.textContent = '';
+            chatWindow.appendChild(codingWindow);
+
+            const code = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink & Pages Online Bookstore</title>
+    <style>
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+ body {
+     background-color: #111;
+     color: #fff;
+     min-height: 100vh;
+     overflow-x: hidden;
+}
+ nav {
+     position: fixed;
+     width: 100%;
+     padding: 2rem;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     z-index: 100;
+}
+ .logo {
+     font-size: 1.5rem;
+     font-weight: 700;
+     letter-spacing: 2px;
+     text-transform: uppercase;
+}
+ .nav-links {
+     display: flex;
+     gap: 2rem;
+     align-items: center;
+}
+ .nav-links a {
+     color: #fff;
+     text-decoration: none;
+     text-transform: uppercase;
+     font-size: 0.9rem;
+     letter-spacing: 1px;
+}
+ .cart {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+}
+ .hero {
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     padding: 0 10%;
+     position: relative;
+}
+ .hero-content {
+     max-width: 600px;
+}
+ .offer {
+     writing-mode: vertical-rl;
+     text-orientation: mixed;
+     position: absolute;
+     left: 2rem;
+     top: 50%;
+     transform: translateY(-50%);
+     letter-spacing: 2px;
+     opacity: 0.7;
+}
+ .hero-title {
+     font-size: 4rem;
+     line-height: 1.1;
+     margin-bottom: 2rem;
+     font-weight: 700;
+     text-transform: uppercase;
+}
+ .hero-title span {
+     display: block;
+}
+ .cta-button {
+     display: inline-block;
+     padding: 1rem 2rem;
+     background: #fff;
+     color: #111;
+     text-decoration: none;
+     font-weight: 500;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     transition: transform 0.3s ease;
+}
+ .cta-button:hover {
+     transform: translateY(-2px);
+}
+ .orbit {
+     position: absolute;
+     right: 10%;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 300px;
+     height: 300px;
+     border: 1px dashed rgba(255, 255, 255, 0.2);
+     border-radius: 50%;
+     animation: rotate 20s linear infinite;
+}
+ .planet {
+     position: absolute;
+     width: 10px;
+     height: 10px;
+     background: #fff;
+     border-radius: 50%;
+     top: -5px;
+     left: 50%;
+     transform: translateX(-50%);
+}
+ .explore {
+     position: absolute;
+     bottom: 2rem;
+     right: 2rem;
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     font-size: 0.9rem;
+}
+/* New Features Section Styles */
+ .features {
+     padding: 4rem 10%;
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 2px;
+     background: rgba(255, 255, 255, 0.1);
+}
+ .feature {
+     background: #111;
+     padding: 2rem;
+     display: flex;
+     align-items: center;
+     gap: 1rem;
+     transition: background-color 0.3s ease;
+}
+ .feature:hover {
+     background: #1a1a1a;
+}
+ .feature-icon {
+     width: 40px;
+     height: 40px;
+     border: 2px solid rgba(255, 255, 255, 0.2);
+     padding: 8px;
+}
+ .feature-text {
+     font-size: 1.1rem;
+     letter-spacing: 1px;
+     background: linear-gradient(90deg, #fff, #4a9eff);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     font-weight: 500;
+}
+ @keyframes rotate {
+     from {
+         transform: translateY(-50%) rotate(0deg);
+    }
+     to {
+         transform: translateY(-50%) rotate(360deg);
+    }
+}
+ @media (max-width: 768px) {
+     .hero-title {
+         font-size: 3rem;
+    }
+     .orbit {
+         width: 200px;
+         height: 200px;
+    }
+     .features {
+         grid-template-columns: 1fr;
+    }
+}
+ .books {
+     padding: 6rem 10%;
+     background: #fff;
+     color: #111;
+}
+ .section-title {
+     text-align: center;
+     font-size: 2.5rem;
+     font-weight: 700;
+     letter-spacing: 4px;
+     margin-bottom: 4rem;
+     text-transform: uppercase;
+}
+ .book-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 4rem;
+     align-items: start;
+}
+ .book-image {
+     position: relative;
+     width: 100%;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+     transition: transform 0.3s ease;
+}
+ .book-image:hover {
+     transform: translateY(-5px);
+}
+ .book-image img {
+     width: 100%;
+     height: auto;
+     display: block;
+}
+ .book-details {
+     padding: 2rem 0;
+}
+ .book-title {
+     font-size: 2rem;
+     font-weight: 500;
+     margin-bottom: 1rem;
+     font-family: monospace;
+}
+ .book-price {
+     font-size: 1.2rem;
+     color: #333;
+     margin-bottom: 1rem;
+     font-family: monospace;
+}
+ .shipping-badge {
+     display: inline-block;
+     background: #ff4444;
+     color: white;
+     padding: 0.25rem 0.75rem;
+     border-radius: 2px;
+     font-size: 0.8rem;
+     text-transform: uppercase;
+     margin-bottom: 1.5rem;
+}
+ .book-description {
+     font-family: monospace;
+     line-height: 1.6;
+     color: #555;
+     margin-bottom: 1.5rem;
+}
+ .book-dimensions {
+     font-family: monospace;
+     color: #666;
+     margin-bottom: 2rem;
+}
+ .book-actions {
+     display: flex;
+     gap: 1rem;
+     align-items: center;
+}
+ .quantity-input {
+     width: 60px;
+     padding: 0.5rem;
+     border: 1px solid #ddd;
+     text-align: center;
+     font-family: monospace;
+}
+ .add-to-cart {
+     padding: 0.5rem 1.5rem;
+     background: transparent;
+     border: 1px solid #111;
+     color: #111;
+     font-family: monospace;
+     cursor: pointer;
+     transition: all 0.3s ease;
+}
+ .add-to-cart:hover {
+     background: #111;
+     color: #fff;
+}
+ .buy-now {
+     padding: 0.5rem 1.5rem;
+     background: #111;
+     border: 1px solid #111;
+     color: #fff;
+     font-family: monospace;
+     cursor: pointer;
+     transition: all 0.3s ease;
+}
+ .buy-now:hover {
+     background: #333;
+}
+ .more-photos {
+     margin-top: 2rem;
+     color: #666;
+     text-decoration: underline;
+     cursor: pointer;
+     font-family: monospace;
+}
+ @media (max-width: 768px) {
+     .book-grid {
+         grid-template-columns: 1fr;
+         gap: 2rem;
+    }
+     .book-details {
+         padding: 1rem 0;
+    }
+}
+ .footer {
+     background-color: #1a1a1a;
+     color: white;
+     padding: 40px 60px;
+     display: flex;
+     justify-content: space-between;
+     font-family: Arial, sans-serif;
+}
+ .footer-left {
+     flex: 1;
+}
+ .footer-right {
+     flex: 1;
+     max-width: 400px;
+}
+ .logo {
+     font-size: 24px;
+     font-weight: bold;
+     margin-bottom: 10px;
+}
+ .copyright {
+     color: #666;
+     font-size: 14px;
+     margin-bottom: 20px;
+}
+ .nav-links a {
+     color: white;
+     text-decoration: none;
+     margin-right: 20px;
+     text-transform: uppercase;
+     font-size: 14px;
+}
+ .nav-links a:hover {
+     text-decoration: underline;
+}
+ .signup-text {
+     margin-bottom: 20px;
+     line-height: 1.5;
+}
+ .email-form {
+     margin-bottom: 20px;
+}
+ .email-input {
+     background-color: transparent;
+     border: 1px solid #444;
+     padding: 10px;
+     width: 70%;
+     color: white;
+     margin-right: 10px;
+}
+ .submit-button {
+     background-color: transparent;
+     border: 1px solid #444;
+     color: white;
+     padding: 10px 20px;
+     cursor: pointer;
+}
+ .submit-button:hover {
+     background-color: #333;
+}
+ .social-links {
+     margin-top: 20px;
+}
+ .social-links a {
+     color: white;
+     text-decoration: none;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+ .social-links img {
+     width: 20px;
+     height: 20px;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Ink & Pages</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#designs">Books</a>
+            <div class="cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-7-3h7a2 2 0 0 0 1.95-1.57L20 6H6m4 3v3m4-3v3"></path>
+                </svg>
+                <span>0</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="offer">Purchase The Books You Love</div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span>The Best</span>
+                <span>Books to Buy</span>
+            </h1>
+            <a href="#designs" class="cta-button">View Available Books</a>
+        </div>
+
+        <div class="orbit">
+            <div class="planet"></div>
+        </div>
+
+        <div class="explore">
+            Explore
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14m-7-7h14"></path>
+            </svg>
+        </div>
+    </main>
+
+    <section class="features">
+        <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="7" y1="8" x2="17" y2="8"></line>
+                <line x1="7" y1="12" x2="17" y2="12"></line>
+                <line x1="7" y1="16" x2="17" y2="16"></line>
+            </svg>
+            <span class="feature-text">Hand Written</span>
+        </div>
+        <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3m18 0v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8m18 0H3"></path>
+            </svg>
+            <span class="feature-text">Carefully Packaged</span>
+        </div>
+        <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <path d="M7 7h10v10H7z"></path>
+            </svg>
+            <span class="feature-text">Exceptional Quality</span>
+        </div>
+    </section>
+
+<section class="books">
+    <h2 class="section-title">books</h2>
+    <div class="book-grid">
+        <div class="book-image">
+            <img src="https://via.placeholder.com/600x800" alt="Voyager 1 book">
+        </div>
+        <div class="book-details">
+            <h3 class="book-title">Book 1</h3>
+            <div class="book-price">$ 49.99 USD</div>
+            <div class="shipping-badge">Free shipping</div>
+            <p class="book-description">
+                A concise and insightful exploration of science’s greatest mysteries, from the building blocks of life to the vastness of the universe.
+                Perfect for curious minds seeking clarity and inspiration.
+            </p>
+            <div class="book-dimensions">Dimensions: 600 x 800</div>
+            <div class="book-actions">
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="buy-now">Buy Now</button>
+            </div>
+            <div class="more-photos">More Photos</div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-left">
+        <div class="logo">INK & PAGES</div>
+        <div class="copyright">© Ink & Pages, 2024</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+        </nav>
+    </div>
+    
+    <div class="footer-right">
+        <div class="signup-text">
+            Sign up for announcements, sales, and new product updates.
+        </div>
+        <form class="email-form">
+            <input type="email" class="email-input" placeholder="Enter email here">
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        <div class="social-links">
+            <a href="#">
+                <img src="https://cdn.prod.website-files.com/5c6c5d537c647f619adce5fc/5c872e9de9020546c037ff88_356077.svg" alt="Instagram">
+                Instagram
+            </a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>`;
+
+            let i = 0;
+            const intervalId = setInterval(() => {
+                if (i < code.length) {
+                    codingWindow.textContent += code.charAt(i);
+                    i++;
+                    chatWindow.scrollTo({
+                        top: chatWindow.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 50);
+        }
+
+
+
+
+        function addCodingWindow2() {
+            const codingWindow = document.createElement('div');
+            codingWindow.className = 'coding-window';
+            codingWindow.textContent = '';
+            chatWindow.appendChild(codingWindow);
+
+            const code = `
+⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ 
+⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ 
+⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ 
+⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
+⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ 
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉
+`;
+
+            let i = 0;
+            const intervalId = setInterval(() => {
+                if (i < code.length) {
+                    codingWindow.textContent += code.charAt(i);
+                    i++;
+                    chatWindow.scrollTo({
+                        top: chatWindow.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 50);
+        }
+
+
+
+
+
+
+
+        function addCodingWindow3() {
+            const codingWindow = document.createElement('div');
+            codingWindow.className = 'coding-window';
+            codingWindow.textContent = '';
+            chatWindow.appendChild(codingWindow);
+
+            const code = `
+𝗙𝗹𝗶𝗴𝗵𝘁 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻:
+
+I have prepared a customized itinerary for your trip, starting on December 5, 2024, and ending on December 8, 2024. Below are the details for your travel arrangements:
+
+• 𝗢𝘂𝘁𝗯𝗼𝘂𝗻𝗱 𝗙𝗹𝗶𝗴𝗵𝘁:
+
+ • Airline: SAS Scandinavian Airlines
+ • Departure: December 5, 2024, at 5:30 PM (EWR - Newark)
+ • Arrival: December 6, 2024, at 11:35 AM (CDG - Paris Charles de Gaulle)
+ • Stopover: 1 stop at ARN (Stockholm Arlanda)
+
+• 𝗥𝗲𝘁𝘂𝗿𝗻 𝗙𝗹𝗶𝗴𝗵𝘁:
+
+ • Airline: SAS Scandinavian Airlines
+ • Departure: December 8, 2024, at 8:05 PM (CDG - Paris Charles de Gaulle)
+ • Arrival: December 9, 2024, at 1:25 PM (EWR - Newark)
+ • Stopover: 1 stop at OSL (Oslo Gardermoen)
+
+The total cost for this round-trip itinerary in economy class is approximately $𝟱𝟭𝟳.
+
+
+𝗔𝗰𝗰𝗼𝗺𝗺𝗼𝗱𝗮𝘁𝗶𝗼𝗻:
+
+For a comfortable stay, I have selected a suitable hotel:
+𝗕&𝗕 𝗛𝗼𝘁𝗲𝗹 𝗣𝗮𝗿𝗶𝘀 𝟭𝟳 𝗕𝗮𝘁𝗶𝗴𝗻𝗼𝗹𝗹𝗲𝘀, with an impressive rating of 8.0. The total cost for the stay is approximately $374. If you wish to include breakfast, the additional cost is $13.42, bringing the total to $𝟯𝟴𝟳.𝟰𝟮.
+
+
+𝗗𝗶𝗻𝗶𝗻𝗴 𝗢𝗽𝘁𝗶𝗼𝗻𝘀:
+
+To make your experience even more enjoyable, I've found two highly-rated restaurants near your hotel:
+
+1.) 99 Haussmann
+
+• Rating: 4.5/5
+• This is an excellent spot for a delightful meal. Reservations are required, so please plan accordingly.
+
+2.) Le Soleil de Kyoto
+
+• Rating: 4.5/5
+• If you prefer not to reserve a spot, this Asian restaurant is another great option for both lunch and dinner.
+
+
+𝗔𝘁𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻𝘀:
+
+Paris offers a wide range of must-see attractions, many of which are free, such as parks and some museums. Here is a breakdown of popular paid attractions:
+
+• Eiffel Tower: €25 (~$30) for summit access.
+• Louvre Museum: €17 (~$18) for general admission.
+• Montmartre and Sacré-Cœur: Free.
+• Seine River Cruise: €15 (~$16) for a 1-hour sightseeing cruise.
+
+
+𝗣𝘂𝗯𝗹𝗶𝗰 𝗧𝗿𝗮𝗻𝘀𝗽𝗼𝗿𝘁𝗮𝘁𝗶𝗼𝗻:
+
+Getting around Paris is simple and affordable. The Paris Metro is an efficient and convenient option.
+
+• A single metro ticket costs approximately €1.90 (~$2).
+• If you're planning to use public transport frequently, the Navigo 5-day travel pass offers unlimited access to the metro, buses, and RER, and costs around $35.
+
+
+
+According to my estimation, the total cost of this entire trip would be approximately $𝟭,𝟯𝟱𝟯.𝟰𝟮..
+You will be able to save approximately $𝟭𝟱𝟬. If you'd like a more cost-effective approach, I'd be happy to assist you.
+
+𝗘𝗻𝗷𝗼𝘆 𝗬𝗼𝘂𝗿 𝗧𝗿𝗶𝗽!
+`;
+
+            let i = 0;
+            const intervalId = setInterval(() => {
+                if (i < code.length) {
+                    codingWindow.textContent += code.charAt(i);
+                    i++;
+                    chatWindow.scrollTo({
+                        top: chatWindow.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 50);
+        }
+
+
+
+
+
+async function handleSend() {
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    // Disable user input and change button appearance
+    userInput.disabled = true;
+    sendButton.disabled = true;
+    sendButton.style.backgroundColor = '#333';
+    sendButton.style.color = '#666';
+    sendButton.innerHTML = '⠒';
+
+    await addMessage(text, true);
+    userInput.value = '';
+    messageCount++;
+
+    // Add a delay before any response starts
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+if (messageCount === 1) {
+    await addMessage("Thinking", false, 3000);
+    styleSpecificWords();
+
+    const lastMessage = chatWindow.lastChild.querySelector('.ai-message');
+    if (lastMessage) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Use the typeMessage function to display typing animation
+        await typeMessage(lastMessage, "I'm GEN-T 𝗩𝟮, an extremely advanced AI language model. I'm trained to process, synthesize, and generate information with precision and adaptability. Feel free to ask me anything. ", 50);
+
+        // Enable the retry button when this specific message appears
+        document.getElementById('retryButton').disabled = false;
+    }
+    } else if (messageCount === 2) {
+    await addMessage("Thinking", false);
+    styleSpecificWords();
+    const lastMessage = chatWindow.lastChild.querySelector('.ai-message');
+    
+    if (lastMessage) {
+        await new Promise(resolve => setTimeout(resolve, 4000));
+        
+        lastMessage.textContent = "Analyzing";
+        styleSpecificWords();
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        
+        lastMessage.textContent = "Constructing";
+        styleSpecificWords();
+        await new Promise(resolve => setTimeout(resolve, 6000));
+        
+        // Use the typeMessage function for typing animation
+        await typeMessage(lastMessage, "I will create the website according to your instructions; Allow me a moment to process it..", 50);
+        styleSpecificWords();
+
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        addCodingWindow();
+
+        // Enable the preview button when the coding window appears
+        document.getElementById('previewButton').disabled = false;
+    }
+    } else if (messageCount === 3) {
+        await addMessage("Sure thing, Give me a moment to process the art.", false);
+    styleSpecificWords();
+    const lastMessage = chatWindow.lastChild.querySelector('.ai-message');
+    
+    if (lastMessage) {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+        
+        lastMessage.textContent = "Constructing";
+        styleSpecificWords();
+        await new Promise(resolve => setTimeout(resolve, 6000));
+    }
+
+        // Use the typeMessage function for typing animation
+        await typeMessage(lastMessage, "Here is an ASCII art of Shrek, as per your request:", 50);
+        styleSpecificWords();
+
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        addCodingWindow2();
+
+        // Enable the preview button when the coding window appears
+        document.getElementById('previewButton').disabled = true;
+    }
+
+else if (messageCount === 4) {
+    // Add "Calculating" message
+    await addMessage("Calculating", false);
+
+    // Get the last message and style it as italic and grey
+    const lastMessage = chatWindow.lastChild.querySelector('.ai-message');
+    if (lastMessage) {
+        lastMessage.style.color = 'grey';
+        lastMessage.style.fontStyle = 'italic';
+    }
+
+    // Wait for 3 seconds
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    // Update the message with the result
+    if (lastMessage) {
+        lastMessage.textContent = "I've identified 𝗧𝗵𝗿𝗲𝗲 𝗥's in the word Strawberry.";
+        // Optionally reset the styling
+        lastMessage.style.color = ''; // Reset to default
+        lastMessage.style.fontStyle = '';
+    }
+
+} else if (messageCount === 5) {
+    await addMessage("Thinking", false, 3000);
+    styleSpecificWords();
+
+    const lastMessage = chatWindow.lastChild?.querySelector('.ai-message');
+    if (lastMessage) {
+        // Sequential updates with proper styling for each step
+        await new Promise(resolve => setTimeout(resolve, 4000));
+
+        lastMessage.textContent = "Analyzing";
+        lastMessage.style.color = 'grey';
+        lastMessage.style.fontStyle = 'italic';
+        styleSpecificWords();
+
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        lastMessage.textContent = "Searching the internet";
+        lastMessage.style.color = 'grey';
+        lastMessage.style.fontStyle = 'italic';
+        styleSpecificWords();
+
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+        lastMessage.textContent = "Planning";
+        lastMessage.style.color = 'grey';
+        lastMessage.style.fontStyle = 'italic';
+        styleSpecificWords();
+
+        await new Promise(resolve => setTimeout(resolve, 6000));
+
+        // Reset styles before final message
+        lastMessage.style.color = ''; // Reset to default
+        lastMessage.style.fontStyle = '';
+
+        // Final message with normal styling
+        await typeMessage(
+            lastMessage,
+            "I have created a tailored plan that suits your needs and preferences, with the execution starting on December 5, 2024. As today is December 3, 2024, the details below will guide you for your upcoming trip.",
+            50
+        );
+
+        // Add coding window content
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        addCodingWindow3();
+
+        // Enable the preview button after adding the coding window
+        const previewButton = document.getElementById('previewButton');
+        if (previewButton) previewButton.disabled = false;
+    }
+}
+
+
+ else if (messageCount === 6) {
+    const lastMessage = chatWindow.lastChild?.querySelector('.ai-message');
+    if (lastMessage) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // Display a farewell message
+        await typeMessage(lastMessage, "Well, have a great day!", 50);
+
+        // Optionally reset styling
+        lastMessage.style.color = ''; // Reset to default
+        lastMessage.style.fontStyle = '';
+    }
+}
+
+
+
+
+
+
+    // Re-enable user input and reset button appearance
+    userInput.disabled = false;
+    sendButton.disabled = false;
+    sendButton.style.backgroundColor = '';
+    sendButton.style.color = '';
+    sendButton.innerHTML = '⠒';
+}
+
+
+// Add event listeners for the buttons
+document.getElementById('retryButton').addEventListener('click', () => {
+    // Add your retry functionality here
+    console.log('Retry clicked');
+});
+
+document.getElementById('previewButton').addEventListener('click', () => {
+    // Add your preview functionality here
+    console.log('Preview clicked');
+});
+
+
+// Add this line to the end of the handleSend function to re-enable the user input button
+
+        sendButton.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSend();
+            }
+        });
+
+        chatWindow.addEventListener('mousemove', (e) => {
+            const rect = chatWindow.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            chatWindow.style.background = `
+                radial-gradient(
+                    circle at ${x}px ${y}px,
+                    rgba(118, 185, 0, 0.1),
+                    rgba(255, 255, 255, 0.05) 40%
+                )
+            `;
+        });
+
+        chatWindow.addEventListener('mouseleave', () => {
+            chatWindow.style.background = 'rgba(255, 255, 255, 0.05)';
+        });
+
+
+
+// Add this function within your existing script
+function styleSpecificWords() {
+    const wordsToStyle = ["Thinking", "Analyzing", "Constructing"];
+    const messages = document.querySelectorAll('.message');
+    
+    messages.forEach(messageElement => {
+        let text = messageElement.textContent;
+        
+        wordsToStyle.forEach(word => {
+            const regex = new RegExp(`\\b${word}\\b`, 'g');
+            text = text.replace(regex, `<span class="styled">${word}</span>`);
+        });
+        
+        messageElement.innerHTML = text;
+    });
+}
+
+// Add this function to create typing animation
+function typeMessage(element, text, speed = 30) {
+    let index = 0;
+    element.textContent = '';
+    
+    return new Promise((resolve) => {
+        function type() {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            } else {
+                resolve();
+            }
+        }
+        type();
+    });
+}
+
+
+
+// Add this to your JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('previewModal');
+    const closeButton = document.getElementById('closePreviewModal');
+    const previewButton = document.getElementById('previewButton');
+    
+    function showPreview() {
+        const iframe = document.getElementById('previewFrame');
+        const codeWindow = document.querySelector('.coding-window');
+        
+        if (!codeWindow) return;
+        
+        // Get the code from the coding window
+        const codeContent = codeWindow.textContent;
+        
+        // Show the modal
+        modal.style.display = 'block';
+        
+        // Write the code to the iframe
+        iframe.contentDocument.open();
+        iframe.contentDocument.write(codeContent);
+        iframe.contentDocument.close();
+    }
+
+    function closePreview() {
+        modal.style.display = 'none';
+    }
+
+    // Preview button click handler
+    if (previewButton) {
+        previewButton.addEventListener('click', showPreview);
+    }
+
+    // Close button handler
+    if (closeButton) {
+        closeButton.addEventListener('click', closePreview);
+    }
+
+    // Close when clicking outside the modal
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closePreview();
+            }
+        });
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal?.style.display === 'block') {
+            closePreview();
+        }
+    });
+});
+    </script>
+<!-- Add this HTML at the end of your body tag -->
+<div class="modal-overlay" id="previewModal">
+    <div class="modal-content">
+<button class="modal-close" id="closePreviewModal">⨯</button>
+<iframe class="preview-iframe" id="previewFrame"></iframe>
+    </div>
+</div>
 </body>
 </html>
